@@ -8,7 +8,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "chart.js": "^3.9.1",
     "pinia": "^2.0.23",
+    "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primevue": "^3.18.1",
     "sass": "^1.56.1",

@@ -1,25 +1,29 @@
 <script setup>
-import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
-const text = ref();
+import NavBar from "./components/NavBar.vue";
+import FooterComponent from "./components/Footer.vue";
+import LoggedUserData from "./components/LoggedUserData.vue";
 </script>
 
 <template>
-  <div class="container">
-    <span class="p-float-label">
-      <InputText id="txt" v-model="text" />
-      <label for="txt">Text</label>
-    </span>
-    <Button label="Greet" class="p-button-raised" icon="pi pi-user" />
+  <LoggedUserData />
+  <NavBar />
+  <div class="wrapper">
+    <RouterView />
   </div>
-  <RouterView />
+
+  <FooterComponent></FooterComponent>
 </template>
 
 <style lang="scss">
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  min-height: 85vh;
 }
 </style>
