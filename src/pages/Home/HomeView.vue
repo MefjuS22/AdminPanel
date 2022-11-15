@@ -1,7 +1,9 @@
 <script setup>
-import DashboardContentVue from "../../components/DashboardContent.vue";
+import DashBoardChart from "./DashBoardChart.vue";
+import DashboardHighlights from "./DashboardHighlights.vue";
 </script>
 
 <template>
-  <DashboardContentVue></DashboardContentVue>
+  <DashboardHighlights></DashboardHighlights>
+  <DashBoardChart></DashBoardChart>
 </template>

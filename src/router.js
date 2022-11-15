@@ -8,6 +8,9 @@ const router = createRouter({
       path: "/",
       name: "Dashboard",
       component: HomeView,
+      meta: {
+        title: "Dashboard",
+      },
     },
     {
       path: "/users",
@@ -16,8 +19,16 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("./pages/Users/UsersView.vue"),
+      meta: {
+        title: "Users",
+      },
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title + " | Admin Panel";
+  next();
 });
 
 export default router;

@@ -1,5 +1,5 @@
 <script setup>
-import UsersContent from "../../components/UsersContent.vue";
+import UsersContent from "./UsersContent.vue";
 </script>
 
 <template>

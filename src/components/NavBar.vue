@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="card px-5">
-      <TabMenu :model="items" />
-    </div>
-  </div>
+  <nav class="card px-5">
+    <TabMenu :model="items" />
+  </nav>
 </template>
 
 <script>

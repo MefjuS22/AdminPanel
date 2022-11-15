@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import NavBar from "./components/NavBar.vue";
 import FooterComponent from "./components/Footer.vue";
 import LoggedUserData from "./components/LoggedUserData.vue";
@@ -8,9 +8,9 @@ import LoggedUserData from "./components/LoggedUserData.vue";
 <template>
   <LoggedUserData />
   <NavBar />
-  <div class="wrapper">
+  <main class="wrapper">
     <RouterView />
-  </div>
+  </main>
 
   <FooterComponent></FooterComponent>
 </template>
@@ -24,6 +24,6 @@ import LoggedUserData from "./components/LoggedUserData.vue";
   box-sizing: border-box;
 }
 .wrapper {
-  min-height: 85vh;
+  min-height: calc(100vh - 5rem);
 }
 </style>
