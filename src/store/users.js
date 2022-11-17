@@ -1,9 +1,69 @@
 import { defineStore } from "pinia";
+import _ from "lodash";
 
+export const useModalStore = defineStore({
+  id: "modalData",
+  state: () => ({
+    isLoading: false,
+    openModal: false,
+    openAddUserModal: false,
+    selectedUser: null,
+    form: {
+      id: null,
+      email: null,
+      username: null,
+      address: {
+        geo: {
+          lat: null,
+          lng: null,
+        },
+        street: null,
+        suite: null,
+        city: null,
+        zipcode: null,
+      },
+      website: null,
+      phone: null,
+    },
+  }),
+  actions: {
+    openAddModal() {
+      this.openAddUserModal = true;
+    },
+    openEditUserModal() {
+      this.openModal = true;
+    },
+    onRowSelect(event) {
+      this.openModal = true;
+      this.selectedUser = event.data;
+      this.form = _.cloneDeep(this.selectedUser);
+    },
+    closeModal() {
+      this.openModal = false;
+      this.openAddUserModal = false;
+      this.form = {
+        id: null,
+        email: null,
+        username: null,
+        address: {
+          geo: {
+            lat: null,
+            lng: null,
+          },
+          street: null,
+          suite: null,
+          city: null,
+          zipcode: null,
+        },
+        website: null,
+        phone: null,
+      };
+    },
+  },
+});
 export const useUserStore = defineStore("user", {
   state: () => ({
     users: [],
-    isLoading: false,
   }),
   getters: {
     getUsers: (state) => {
@@ -42,6 +102,7 @@ export const useUserStore = defineStore("user", {
     },
     async addUser(user) {
       this.isLoading = true;
+      this.users.push(user);
       // try {
       //   const response = await fetch(
       //     "https://jsonplaceholder.typicode.com/users",
