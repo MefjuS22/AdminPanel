@@ -14,6 +14,7 @@ import Avatar from "primevue/avatar";
 import Card from "primevue/card";
 import Chart from "primevue/chart";
 import Dialog from "primevue/dialog";
+import Skeleton from "primevue/skeleton";
 
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/md-dark-indigo/theme.css"; //theme
@@ -38,5 +39,6 @@ app.component("Avatar", Avatar);
 app.component("Card", Card);
 app.component("Chart", Chart);
 app.component("Dialog", Dialog);
+app.component("Skeleton", Skeleton);
 
 app.mount("#app");

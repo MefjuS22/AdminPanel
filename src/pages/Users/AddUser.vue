@@ -18,7 +18,7 @@ export default {
       const ids = this.users.map((user) => user.id);
       let newUser = {
         id: Math.max(...ids) + 1,
-        name: useModalStore().form.name,
+        name: this.modalStore.form.name,
         email: useModalStore().form.email,
         username: useModalStore().form.username,
         address: {

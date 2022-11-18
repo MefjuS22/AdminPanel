@@ -30,6 +30,9 @@ export default {
       this.selectedUser = event.data;
       this.form = _.cloneDeep(this.selectedUser);
     },
+    navigateToUserDetails(id) {
+      this.$router.push(`/user/${id}`);
+    },
   },
 };
 </script>
@@ -41,6 +44,8 @@ export default {
       :value="users"
       responsiveLayout="scroll"
       class="w-11 shadow-5 p-datatable-lg"
+      selectionMode="single"
+      @rowSelect="navigateToUserDetails($event.data.id)"
     >
       <template #header>
         <div

@@ -27,6 +27,9 @@ export const useModalStore = defineStore({
     },
   }),
   actions: {
+    toggleLoading() {
+      this.isLoading = !this.isLoading;
+    },
     openAddModal() {
       this.openAddUserModal = true;
     },
@@ -64,6 +67,7 @@ export const useModalStore = defineStore({
 export const useUserStore = defineStore("user", {
   state: () => ({
     users: [],
+    user: {},
   }),
   getters: {
     getUsers: (state) => {
@@ -72,21 +76,32 @@ export const useUserStore = defineStore("user", {
   },
   actions: {
     async fetchUsers() {
-      this.isLoading = true;
+      useModalStore().toggleLoading();
       try {
         const response = await fetch(
           "https://jsonplaceholder.typicode.com/users"
         );
         const users = await response.json();
         this.users = users;
-        this.isLoading = false;
+        useModalStore().toggleLoading();
       } catch (error) {
         console.alert(error);
-        this.isLoading = false;
+        useModalStore().toggleLoading();
+      }
+    },
+    async fetchUser(id) {
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/users/${id}`
+        );
+        const user = await response.json();
+        this.user = user;
+      } catch (error) {
+        console.alert(error);
       }
     },
     async deleteUser(id) {
-      this.isLoading = true;
+      useModalStore().toggleLoading();
       // try {
       //   await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
       //     method: "DELETE",
@@ -98,11 +113,12 @@ export const useUserStore = defineStore("user", {
       //   this.isLoading = false;
       // }
       this.users = this.users.filter((user) => user.id !== id);
-      this.isLoading = false;
+      useModalStore().toggleLoading();
     },
     async addUser(user) {
-      this.isLoading = true;
+      useModalStore().toggleLoading();
       this.users.push(user);
+      useModalStore().toggleLoading();
       // try {
       //   const response = await fetch(
       //     "https://jsonplaceholder.typicode.com/users",
@@ -123,7 +139,7 @@ export const useUserStore = defineStore("user", {
       // }
     },
     updateUser(user) {
-      this.isLoading = true;
+      useModalStore().toggleLoading();
       this.users.forEach((u) => {
         if (u.id === user.id) {
           u.name = user.name;
@@ -135,7 +151,9 @@ export const useUserStore = defineStore("user", {
           u.address.suite = user.address.suite;
           u.address.city = user.address.city;
           u.address.zipcode = user.address.zipcode;
+          useModalStore().toggleLoading();
         }
+        useModalStore().toggleLoading();
       });
       // try {
       //   const response = await fetch(

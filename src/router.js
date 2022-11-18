@@ -23,6 +23,15 @@ const router = createRouter({
         title: "Users",
       },
     },
+    {
+      path: "/user/:id",
+      name: "user",
+      component: () => import("./pages/UserDetails/UserDetailsView.vue"),
+      meta: {
+        title: "User",
+      },
+      props: true,
+    },
   ],
 });
 
